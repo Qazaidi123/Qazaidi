@@ -99,10 +99,37 @@ p.appendChild(div);
 }
 
 // MODAL
-function openModal(){
-document.getElementById("modal").classList.remove("hidden");
+function openRegister(){
+  document.getElementById("registerModal").classList.remove("hidden");
 }
 
-function closeModal(){
-document.getElementById("modal").classList.add("hidden");
+function closeRegister(){
+  document.getElementById("registerModal").classList.add("hidden");
+}
+
+function generateID(){
+  return "REG" + Math.random().toString(36).substr(2,6).toUpperCase();
+}
+
+function submitForm(){
+
+  let data = {
+    name: document.getElementById("name").value,
+    mobile: document.getElementById("mobile").value,
+    destination: document.getElementById("destination").value,
+    members: document.getElementById("members").value
+  };
+
+  fetch("http://<BACKEND-SERVICE>/api.php", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(res => {
+    let regId = generateID();
+
+    document.getElementById("successMsg").innerText =
+      `Thanks for Registration. Your Registration ID ${regId}. Our Executive will contact you within 24 hrs.`;
+  });
 }
