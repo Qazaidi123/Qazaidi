@@ -1,1 +1,21 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database-deployment
+  labels:
+    app: database-depl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: exploreworld
+  template:
+    metadata:
+      labels:
+        app: exploreworld
+    spec:
+      containers:
+      - name: database-container
+        image: IMAGE_PLACEHOLDER
+        ports:
+        - containerPort: 80
