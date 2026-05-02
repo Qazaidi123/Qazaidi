@@ -120,6 +120,11 @@ function submitForm(){
     members: document.getElementById("members").value
   };
 
+  if(!data.name || !data.mobile || !data.destination || !data.members){
+  alert("All fields are required");
+  return;
+}
+
   fetch("http://<backend-service>/api.php", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
