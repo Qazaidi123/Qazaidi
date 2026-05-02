@@ -120,7 +120,7 @@ function submitForm(){
     members: document.getElementById("members").value
   };
 
-  fetch("http://<BACKEND-SERVICE>/api.php", {
+  fetch("http://<backend-service>/api.php", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
