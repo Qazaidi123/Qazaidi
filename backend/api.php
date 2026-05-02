@@ -12,6 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
+    if(empty($data['name']) || empty($data['mobile']) || empty($data['destination']) || empty($data['members'])){
+    echo json_encode(["error" => "All fields are required"]);
+    exit();
+}
+
     $reg_id = "REG" . strtoupper(substr(md5(time()), 0, 6));
 
     $stmt = $conn->prepare("INSERT INTO registrations (reg_id, name, mobile, destination, members) VALUES (?, ?, ?, ?, ?)");
