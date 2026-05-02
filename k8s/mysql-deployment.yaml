@@ -8,11 +8,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: exploreworld
+      app: database
   template:
     metadata:
       labels:
-        app: exploreworld
+        app: database
     spec:
       containers:
       - name: database-container
