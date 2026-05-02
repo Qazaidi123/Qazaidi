@@ -3,8 +3,8 @@ pipeline {
 
   environment {
     SONAR_HOME = tool "Sonar"
-    FRONTEND_IMAGE = "qazaidi123/frontendqz"
-    BACKEND_IMAGE = "qazaidi123/backendqz"
+    FRONTEND_IMAGE = "qazaidi123/expofront"
+    BACKEND_IMAGE = "qazaidi123/expoback"
     IMAGE_TAG = "${BUILD_NUMBER}"
     DOCKER_CREDS = credentials('dockerhub-creds')
     DB_HOST = "mysql-service"
