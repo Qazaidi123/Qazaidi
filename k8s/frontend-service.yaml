@@ -1,21 +1,12 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: frontend-deployment
-  labels:
-    app: frontend-depl
+  name: frontend-service
 spec:
-  replicas: 3
   selector:
-    matchLabels:
-      app: exploreworld
-  template:
-    metadata:
-      labels:
-        app: exploreworld
-    spec:
-      containers:
-      - name: frontend-container
-        image: IMAGE_PLACEHOLDER
-        ports:
-        - containerPort: 80
+    app: exploreworld
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
