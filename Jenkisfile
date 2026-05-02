@@ -7,6 +7,10 @@ pipeline {
     BACKEND_IMAGE = "qazaidi123/backendqz"
     IMAGE_TAG = "${BUILD_NUMBER}"
     DOCKER_CREDS = credentials('dockerhub-creds')
+    DB_HOST = "mysql-service"
+    DB_USER = "root"
+    DB_PASS = "password"
+    DB_NAME = "travel"
   }
   stages {
     stage("clone git repo") {
