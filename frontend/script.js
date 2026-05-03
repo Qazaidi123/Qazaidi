@@ -128,16 +128,25 @@ function submitForm(){
   return;
 }
 
-  fetch("http:// ab6b7b044074c40a5beca4a51fccb4d8-837762840.ap-south-1.elb.amazonaws.com/api.php", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(data)
+  fetch("/api.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name,
+    mobile,
+    destination,
+    members
   })
-  .then(res => res.text())
-  .then(res => {
-    let regId = generateID();
-
-    document.getElementById("successMsg").innerText =
-      `Thanks for Registration. Your Registration ID ${regId}. Our Executive will contact you within 24 hrs.`;
-  });
-}
+})
+.then(res => res.json())
+.then(data => {
+  document.getElementById("successMsg").innerText =
+    "Thanks for Registration. Your Registration ID " + data.reg_id;
+})
+.catch(err => {
+  console.error(err);
+});
+      }  
+  
