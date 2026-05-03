@@ -100,6 +100,7 @@ p.appendChild(div);
 
 // MODAL
 function openRegister(){
+  console.log("clicked");
   document.getElementById("registerModal").classList.remove("hidden");
 }
 
