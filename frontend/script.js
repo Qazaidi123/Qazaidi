@@ -1,17 +1,19 @@
 // HERO AUTO CHANGE
 let heroImages = [
-"https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-"https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-"https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+  "https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
 ];
 
-let i = 0;
-setInterval(()=>{
-document.querySelector(".hero").style.backgroundImage =
-`url('${heroImages[i]}')`;
-i = (i+1)%heroImages.length;
-},3000);
+let hero = document.querySelector(".hero");
 
+if (hero) {
+  let i = 0;
+  setInterval(() => {
+    hero.style.backgroundImage = `url('${heroImages[i]}')`;
+    i = (i + 1) % heroImages.length;
+  }, 3000);
+}
 // NAV
 function hideAll(){
 ["home","explore","gallery","package"].forEach(id=>{
