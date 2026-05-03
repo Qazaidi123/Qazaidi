@@ -61,6 +61,8 @@ pipeline {
 
         sh " kubectl rollout status deployment/frontend-deployment "
         sh " kubectl rollout status deployment/backend-deployment "
+        sh " kubectl rollout restart deployment frontend-deployment "
+        sh " kubectl rollout restart deployment backend-deployment "
         
         }
       }
