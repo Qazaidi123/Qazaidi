@@ -128,7 +128,7 @@ function submitForm(){
   return;
 }
 
-  fetch("http://<backend-service>/api.php", {
+  fetch("http:// ab6b7b044074c40a5beca4a51fccb4d8-837762840.ap-south-1.elb.amazonaws.com/api.php", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data)
