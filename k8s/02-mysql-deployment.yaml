@@ -17,14 +17,13 @@ spec:
       containers:
       - name: database-container
         image: mysql:5.7
-        ports:
+
+     env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: root123
+
+      - name: MYSQL_DATABASE
+        value: travel
+
+      ports:
         - containerPort: 3306
-        volumeMounts:
-        - name: initdb
-          mountPath: /docker-entrypoint-initdb.d
-
-      volumes:               
-      - name: initdb
-        configMap:
-          name: mysql-initdb    
-
