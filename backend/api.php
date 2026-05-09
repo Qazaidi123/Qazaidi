@@ -1,35 +1,27 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
 
-$conn = new mysqli("mysql-service", "root", "password", "travel");
+$host = 'db';
+$dbname = 'testdb';
+$user = 'root';
+$pass = 'root';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$connected = false;
+
+for ($i = 0; $i < 10; $i++) {
+
+    $conn = @new mysqli($host, $user, $pass, $dbname);
+
+    if (!$conn->connect_error) {
+        $connected = true;
+        break;
+    }
+
+    sleep(2);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if(empty($data['name']) || empty($data['mobile']) || empty($data['destination']) || empty($data['members'])){
-    echo json_encode(["error" => "All fields are required"]);
-    exit();
+if (!$connected) {
+    die("Database connection failed");
 }
 
-    $reg_id = "REG" . strtoupper(substr(md5(time()), 0, 6));
-
-    $stmt = $conn->prepare("INSERT INTO registrations (reg_id, name, mobile, destination, members) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssi",
-        $reg_id,
-        $data['name'],
-        $data['mobile'],
-        $data['destination'],
-        $data['members']
-    );
-
-    $stmt->execute();
-
-    echo json_encode(["reg_id" => $reg_id]);
-}
+echo "Connected to MySQL successfully!";
 ?>
