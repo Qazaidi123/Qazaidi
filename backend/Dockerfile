@@ -1,7 +1,5 @@
 FROM php:8.2-apache
 
-RUN docker-php-ext-install mysqli
-
 # Enable rewrite (optional but safe)
 RUN a2enmod rewrite
 
